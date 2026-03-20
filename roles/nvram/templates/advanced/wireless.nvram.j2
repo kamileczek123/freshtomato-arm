@@ -1,0 +1,71 @@
+# Wireless settings for: (wl0) / 2.4 GHz
+nvram set wl0_afterburner='{{ wl0_afterburner }}'
+nvram set wl0_btc_mode='{{ wlX_btc_mode }}'
+nvram set wl0_frameburst='{{ wlX_frameburst }}'
+
+nvram set wl0_country_code='{{ wlX_country_code }}'
+nvram set wl0_country_rev='{{ wlX_country_rev }}'
+nvram set wl0_reg_mode='{{ wlX_reg_mode }}'
+nvram set wl0_txpwr='{{ wlX_txpwr }}'
+## R8000
+nvram set 1:maxp2ga0='{{ r8000_1_maxp2ga0 }}'
+nvram set 1:maxp2ga1='{{ r8000_1_maxp2ga1 }}'
+nvram set 1:maxp2ga2='{{ r8000_1_maxp2ga2 }}'
+nvram set 1:ccode='{{ wlX_country_code }}'
+nvram set 1:regrev='{{ wlX_country_rev }}'
+## R7000
+nvram set pci/1/1/maxp2ga0='{{ r7000_pci_1_1_maxp2ga0 }}'
+nvram set pci/1/1/maxp2ga1='{{ r7000_pci_1_1_maxp2ga1 }}'
+nvram set pci/1/1/maxp2ga2='{{ r7000_pci_1_1_maxp2ga2 }}'
+nvram set pci/1/1/ccode='{{ wlX_country_code }}'
+nvram set pci/1/1/regrev='{{ wlX_country_code }}'
+
+
+
+# Wireless settings for: (wl1) / 5 GHz
+nvram set wl1_afterburner='{{ wlX_afterburner }}'
+nvram set wl1_btc_mode='{{ wlX_btc_mode }}'
+nvram set wl1_frameburst='{{ wlX_frameburst }}'
+
+nvram set wl1_country_code='{{ wlX_country_code }}'
+nvram set wl1_country_rev='{{ wlX_country_rev }}'
+nvram set wl1_reg_mode='{{ wlX_reg_mode }}'
+nvram set wl1_txpwr='{{ wlX_txpwr }}'
+## R8000
+nvram set 0:maxp5ga0='{{ r8000_0_maxp5ga0 }}'
+nvram set 0:maxp5ga1='{{ r8000_0_maxp5ga1 }}'
+nvram set 0:maxp5ga2='{{ r8000_0_maxp5ga2 }}'
+nvram set 0:ccode='{{ wlX_country_code }}'
+nvram set 0:regrev='{{ wlX_country_rev }}'
+## R7000
+nvram set pci/2/1/maxp5ga0='{{ r7000_pci_2_1_maxp5ga0 }}'
+nvram set pci/2/1/maxp5ga1='{{ r7000_pci_2_1_maxp5ga1 }}'
+nvram set pci/2/1/maxp5ga2='{{ r7000_pci_2_1_maxp5ga2 }}'
+nvram set pci/2/1/ccode='{{ wlX_country_code }}'
+nvram set pci/2/1/regrev='{{ wlX_country_rev }}'
+
+
+
+# Wireless settings for: (wl2) / 5 GHz
+nvram set wl2_afterburner='{{ wlX_afterburner }}'
+nvram set wl2_btc_mode='{{ wlX_btc_mode }}'
+nvram set wl2_frameburst='{{ wlX_frameburst }}'
+
+nvram set wl2_country_code='{{ wlX_country_code }}'
+nvram set wl2_country_rev='{{ wlX_country_rev }}'
+nvram set wl2_reg_mode='{{ wlX_reg_mode }}'
+nvram set wl2_txpwr='{{ wlX_txpwr }}'
+## R8000
+nvram set 2:maxp5ga0='{{ r8000_2_maxp5ga0 }}'
+nvram set 2:maxp5ga1='{{ r8000_2_maxp5ga1 }}'
+nvram set 2:maxp5ga2='{{ r8000_2_maxp5ga2 }}'
+nvram set 2:ccode='{{ wlX_country_code }}'
+nvram set 2:regrev='{{ wlX_country_rev }}'
+
+
+
+## Common R8000+R7000
+nvram set wl_country_code='{{ wlX_country_code }}'
+nvram set wl_country_rev='{{ wlX_country_rev }}'
+nvram set wl_reg_mode='{{ wlX_reg_mode }}'
+nvram set wl_txpwr='{{ wlX_txpwr }}'

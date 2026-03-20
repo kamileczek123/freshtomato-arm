@@ -1,0 +1,137 @@
+---
+
+- import_tasks: "./usb_support.yml"
+  when: usb_support
+  tags:
+    - usb_support
+    # `backup` tasks require `usb_support` before
+
+- import_tasks: "./network.yml"
+  when: network
+  tags:
+    - network
+
+- import_tasks: "./identification.yml"
+  when: identification
+  tags:
+    - identification
+
+- import_tasks: "./time.yml"
+  when: time
+  tags:
+    - time
+
+- import_tasks: "./virtual_wireless.yml"
+  when: virtual_wireless
+  tags:
+    - virtual_wireless
+  
+- import_tasks: "./wireless.yml"
+  when: wireless
+  tags:
+    - wireless
+
+- import_tasks: "./pf_basic.yml"
+  when: pf_basic
+  tags:
+    - pf_basic
+
+- import_tasks: "./pf_upnp_nat_pmp.yml"
+  when: pf_upnp_nat_pmp
+  tags:
+    - pf_upnp_nat_pmp
+
+- import_tasks: "./firewall.yml"
+  when: firewall
+  tags:
+    - firewall
+
+- import_tasks: "./vlan.yml"
+  when: vlan
+  tags:
+    - vlan
+
+- import_tasks: "./admin_access.yml"
+  when: admin_access
+  tags:
+  - admin_access
+    # `backup` tasks require `admin_access` before
+
+- import_tasks: "./tomatoanon.yml"
+  when: tomatoanon
+  tags:
+    - tomatoanon
+
+- import_tasks: "./dnsmasq.yml"
+  when: dnsmasq
+  tags:
+    - dnsmasq
+
+- import_tasks: "./dhcp_dns.yml"
+  when: dhcp_dns
+  tags:
+    - dhcp_dns
+
+- import_tasks: "./scripts.yml"
+  when: scripts
+  tags:
+    - scripts
+
+- import_tasks: "./rstats.yml"
+  when: rstats
+  tags:
+    - rstats
+
+- import_tasks: "./cstats.yml"
+  when: cstats
+  tags:
+    - cstats
+
+- import_tasks: "./logging.yml"
+  when: logging
+  tags:
+    - logging
+
+- import_tasks: "./scheduler.yml"
+  when: scheduler
+  tags:
+    - scheduler
+    # `backup` tasks require `scheduler` before
+
+- import_tasks: "./openvpn_server_1.yml"
+  when: openvpn_server_1
+  tags:
+    - openvpn_server_1
+
+- import_tasks: "./openvpn_server_2.yml"
+  when: openvpn_server_2
+  tags:
+    - openvpn_server_2
+
+- import_tasks: "./snmp.yml"
+  when: snmp
+  tags:
+    - snmp
+
+- import_tasks: "./wireguard_wg0.yml"
+  when: wireguard_wg0
+  tags:
+    - wireguard_wg0
+
+- import_tasks: "./wireguard_wg1.yml"
+  when: wireguard_wg1
+  tags:
+    - wireguard_wg1
+
+- import_tasks: "./reboot.yml"
+  when: reboot
+  tags:
+    - reboot
+    # following tasks require `reboot` after
+    # - network
+    # - identification
+    # - virtual_wireless
+    # - wireless
+    # - dhcp_dns
+    # - vlan
+    # - scripts

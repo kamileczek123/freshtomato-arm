@@ -1,0 +1,63 @@
+---
+
+opt_dir: "/opt"
+mnt_backup_dir: "/mnt/backup"
+host_nvram_dir: "./files/{{ inventory_hostname }}/nvram"
+
+### template path mappings (resolved from roles/nvram/templates/) ###
+
+# administration
+admin_access_nvram: "administration/admin_access.nvram.j2"
+logging_nvram: "administration/logging.nvram.j2"
+scheduler_nvram: "administration/scheduler.nvram.j2"
+scripts_nvram: "administration/scripts.nvram.j2"
+tomatoanon_nvram: "administration/tomatoanon.nvram"
+snmp_nvram: "administration/snmp.nvram.j2"
+rstats_nvram: "administration/rstats_bandwidth_monitoring.nvram.j2"
+cstats_nvram: "administration/cstats_ip_traffic_monitoring.nvram.j2"
+
+# advanced
+dhcp_dns_nvram: "advanced/dhcp_dns.nvram.j2"
+firewall_nvram: "advanced/firewall.nvram.j2"
+vlan_nvram: "advanced/vlan.nvram.j2"
+virtual_wireless_nvram: "advanced/virtual_wireless.nvram.j2"
+wireless_nvram: "advanced/wireless.nvram.j2"
+
+# basic
+identification_nvram: "basic/identification.nvram.j2"
+network_nvram: "basic/network.nvram.j2"
+time_nvram: "basic/time.nvram.j2"
+
+# port_forwarding
+pf_basic_nvram: "port_forwarding/basic.nvram.j2"
+pf_upnp_nat_pmp_nvram: "port_forwarding/upnp_nat_pmp.nvram.j2"
+
+# usb_nas
+usb_support_nvram: "usb_nas/usb_support.nvram.j2"
+copy_usb_boot_scripts: true
+usb_boot_default_scripts:
+  - src: "usb_nas/scripts/S00netwait"
+    dest: "/opt/etc/init.d/S00netwait"
+    decrypt: false
+    mode: '755'
+  - src: "usb_nas/scripts/S01tuning"
+    dest: "/opt/etc/init.d/S01tuning"
+    decrypt: false
+    mode: '755'
+  - src: "usb_nas/scripts/mount.autorun"
+    dest: "/opt/mount.autorun"
+    decrypt: false
+    mode: '755'
+  - src: "usb_nas/scripts/mount.autostop"
+    dest: "/opt/mount.autostop"
+    decrypt: false
+    mode: '755'
+
+# vpn
+openvpn_server_1_nvram: "vpn/openvpn_server_1.nvram.j2"
+openvpn_server_2_nvram: "vpn/openvpn_server_2.nvram.j2"
+wireguard_wg0_nvram: "vpn/wireguard_wg0.nvram.j2"
+wireguard_wg1_nvram: "vpn/wireguard_wg1.nvram.j2"
+
+
+

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+/usr/bin/logger -s "mount.autostop: starting..."
+
+if [ -x /opt/etc/init.d/rc.unslung ]; then
+  /opt/etc/init.d/rc.unslung stop
+  sleep 15
+  /usr/bin/logger -s "mount.autostop: stop has been called."
+fi
+
+/usr/bin/logger -s "mount.autostop: ext2 remounting to ro..."
+for i in `cat /proc/mounts | awk '/ext2/{print($1)}'` ; do
+  mount -o remount,ro $i
+done
+/usr/bin/logger -s "mount.autostop: remounting done."
+
+/usr/bin/logger -s "mount.autostop: disbale swap"
+/sbin/swapoff LABEL=_SWAP
+
+exit 0

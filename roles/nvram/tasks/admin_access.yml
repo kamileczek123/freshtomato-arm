@@ -1,0 +1,14 @@
+---
+
+# `backup` tasks require `admin_access` before
+
+- name: Administration > Admin Access
+  ansible.builtin.shell: "{{ lookup('template', '{{ admin_access_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Administration > Admin Access changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh

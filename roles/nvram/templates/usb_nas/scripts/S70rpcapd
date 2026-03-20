@@ -1,0 +1,126 @@
+#!/bin/sh
+
+# Entware script for rpcapd
+#
+# Things of importance:
+#
+# 1. rpcapd does not properly daemonise itself with the -d flag.  It
+# still leaves fd 0/1/2 (stdin/stdout/stderr) tied to whatever pty ran
+# the process.  Busybox "nohup" can be used to relieve some of this
+# pain, but not entirely.
+# http://www.linksysinfo.org/index.php?threads/using-wireshark-with-tomato.34269/#post-253784
+#
+# 2. rpcapd does not have a way to maintain its own pidfile.  Therefore,
+# this shell script has to do it for it.  It's not as easy as using $$
+# either, because of how rpcapd forks itself.  The proper "master process"
+# actually ends up having a PPID of 1.  The easiest way to match the
+# correct process is to use pgrep, but that doesn't come with Busybox,
+# it's part of an Entware package.  So we get to do some silly nonsense
+# to figure out which rpcapd process is "the right one" when making our
+# pidfile.
+#
+rpcapd="/opt/rpcapd"
+flags="-n -4 -b $(nvram get lan_ipaddr)"
+pidfile="/var/run/rpcapd.pid"
+
+awk="/usr/bin/awk"
+
+start() {
+  if [ ! -x "${rpcapd}" ]; then
+    echo "${rpcapd} missing; bailing..."
+  fi
+
+  # Properly background the process and set fd 0/1/2 to /dev/null
+  nohup "${rpcapd}" -d ${flags} > /dev/null
+
+  if [ $? -ne 0 ]; then
+    echo "${rpcapd} did not start correctly (exit code $?).  Process may"
+    echo "be running or in some weird state.  Manually investigate."
+    exit $?
+  fi
+
+  # Sleep for 2 seconds.  You might think this is unnecessary -- it isn't.
+  # rpcapd apparently starts, then forks a child, then that child becomes the
+  # parent, and forks *another* child.  Proof:
+  #
+  # On fresh start-up:
+  # UID        PID  PPID  C STIME TTY          TIME CMD
+  # root      8307     1  0 16:13 ?        00:00:00 /opt/rpcapd -d -n -4 -b 192.168.1.1
+  # root      8308  8307  0 16:13 ?        00:00:00 /opt/rpcapd -d -n -4 -b 192.168.1.1
+  #
+  # Then a few hundred milliseconds later (sometimes up to 1 second):
+  # UID        PID  PPID  C STIME TTY          TIME CMD
+  # root      8308     1  0 16:13 ?        00:00:00 /opt/rpcapd -d -n -4 -b 192.168.1.1
+  # root      8319  8308  0 16:13 ?        00:00:00 /opt/rpcapd -d -n -4 -b 192.168.1.1
+  #
+  # Pay close attention to the PPIDs there.  What happened to PID 8307?
+  # This is why we need the sleep statement.
+  #
+  sleep 2
+
+  # Now figure out what the actual PID of the parent rpcapd process
+  # is.  It should have a PPID of 1, unlike its children.  The methodology
+  # used here is:
+  #
+  # - Use pidof to get a list of all the rpcapd processes (parent and children)
+  # - Iterate over each result, examining /proc/{pid}/stat and looking at the
+  #   2nd (process name in parens), and 4th fields (PPID).  The master rpcapd
+  #   process should have a PPID of 1.
+  #
+  # We cannot use pidof against $rpcapd (full path) because Busybox pidof
+  # is stupid in how it does its vague/ambiguous string matching.
+  #
+  for p in $(pidof rpcapd)
+  do
+    pid=$(${awk} '$2 == "(rpcapd)" && $4 == 1 { print $1 }' /proc/${p}/stat)
+
+    if [ -n "${pid}" ]; then
+      masterpid=${pid}
+      break
+    fi
+  done
+
+  if [ -z "${masterpid}" ]; then
+    echo "Unable to detect rpcapd master PID.  ${pidfile} was not written"
+    echo "to, or may be stale.  You need to manually intervene."
+    exit 1
+  fi
+
+  echo ${masterpid} > "${pidfile}"
+
+  echo "Started rpcapd (pid ${masterpid})"
+}
+
+stop() {
+  if [ -f "${pidfile}" ]; then
+    kill $(cat "${pidfile}")
+    rm -f "${pidfile}"
+    echo "Stopped rpcapd"
+  else
+    echo "ERROR: ${pidfile} does not exist."
+    exit 1
+  fi
+}
+
+
+ACTION=$1
+CALLER=$2
+
+case $ACTION in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop && start
+    ;;
+  check|reconfigure|kill)
+    # no-ops
+    ;;
+  *)
+    echo "Usage: $0 (start|stop|restart)"
+    exit 1
+    ;;
+esac

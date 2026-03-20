@@ -1,0 +1,28 @@
+#!/bin/sh
+
+/usr/bin/logger -s "mount.autorun: starting..."
+
+# use '/sbin/blkid' to see available drives, partitions and labels
+
+/usr/bin/logger -s "mount.autorun: set mounts in /etc/fstab"
+# /dev/sdX2
+echo 'LABEL=_OPT /opt ext2 rw,noatime 0 2' >>/etc/fstab
+
+# /dev/sdX1
+echo 'LABEL=_SWAP" none swap sw 0 0' >>/etc/fstab
+
+/usr/bin/logger -s "mount.autorun: mounting /etc/fstab"
+/bin/mount -a
+
+/usr/bin/logger -s "mount.autorun: enable swap"
+/sbin/swapon LABEL=_SWAP
+
+if [ -x /opt/etc/init.d/rc.unslung ]; then
+  if /opt/etc/init.d/rc.unslung start; then
+    /usr/bin/logger -s "mount.autorun: Successfully finished starting Entware services."
+  else
+    /usr/bin/logger -s "mount.autorun: ERROR, Unable to start Entware services."
+  fi
+fi
+
+exit 0

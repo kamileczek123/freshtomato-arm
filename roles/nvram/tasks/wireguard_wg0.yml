@@ -1,0 +1,13 @@
+---
+
+- name: VPN > Wireguard > wg0
+  ansible.builtin.shell: "{{ lookup('template', wireguard_wg0_nvram) }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit VPN > Wireguard > wg0 changes and restart 'wireguard0' service
+  ansible.builtin.shell: |
+    nvram commit
+    service wireguard0 restart
+  args: 
+    executable: /bin/sh

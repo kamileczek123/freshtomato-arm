@@ -1,0 +1,35 @@
+# interface=eth0
+# listen-address=192.168.50.1
+port=0
+domain-needed
+bogus-priv
+strict-order
+expand-hosts
+local=/lo/192.168.1.1
+# local=/1.168.192.in-addr.arpa/192.168.1.254
+domain=lo
+
+quiet-dhcp
+quiet-dhcp6
+quiet-ra
+log-facility=/var/log/dnsmasq.log
+
+# br0 network
+dhcp-range=set:br0,192.168.1.101,192.168.1.200,255.255.255.0,1h
+dhcp-option=tag:br0,3,192.168.1.1
+dhcp-option=tag:br0,6,192.168.1.1,8.8.8.8,8.8.4.4
+
+dhcp-host=01:01:01:01:01:01,192.168.1.1,4h,set:br0 #your router
+dhcp-host=01:02:03:04:05:06,192.168.1.101,4h,set:br0 #your first device
+# ...
+dhcp-host=EE:EE:EE:EE:EE:EE,192.168.1.200,4h,set:br0 your last device
+
+# br1 network
+# dhcp-range=set:br1,192.168.2.101,192.168.2.200,255.255.255.0,1h
+# dhcp-option=tag:br1,3,192.168.2.1
+# dhcp-option=tag:br1,6,192.168.2.1,8.8.8.8,8.8.4.4
+# dhcp-option=tag:br1,121,0.0.0.0/0,192.168.40.1,192.168.2.0/24,192.168.40.1
+# dhcp-host=02:02:02:02:02:02,192.168.2.1,4h,set:br1 #your router
+dhcp-host=02:02:03:04:05:06,192.168.2.101,4h,set:br1 #your first device
+# ...
+dhcp-host=FF:FF:FF:FF:FF:FF,192.168.2.200,4h,set:br1 your last device

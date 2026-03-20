@@ -1,0 +1,14 @@
+---
+
+- name: Administration > IP Traffic Monitoring
+  ansible.builtin.shell: "{{ lookup('template', cstats_ip_traffic_monitoring_nvram) }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Administration > IP Traffic Monitoring changes and restart 'cstats' service
+  ansible.builtin.shell: |
+    nvram commit
+    service rstats restart
+  args: 
+    executable: /bin/sh
+

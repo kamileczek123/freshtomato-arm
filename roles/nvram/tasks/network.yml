@@ -1,0 +1,14 @@
+---
+
+# requires 'reboot' task to commit changes and reboot router
+
+- name: Configure Basic > Network
+  ansible.builtin.shell: "{{ lookup('template', '{{ network_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Basic > Network changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh

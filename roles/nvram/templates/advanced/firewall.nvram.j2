@@ -1,0 +1,31 @@
+# Firewall
+nvram set block_wan='{{ block_wan }}'
+nvram set block_wan_limit='{{ block_wan_limit }}'
+nvram set block_wan_limit_icmp='{{ block_wan_limit_icmp }}'
+nvram set ne_syncookies='{{ ne_syncookies }}'
+nvram set DSCP_fix_enable='{{ DSCP_fix_enable }}'
+nvram set fw_blackhole='{{ fw_blackhole }}'
+
+# NAT
+nvram set nf_loopback='{{ nf_loopback }}'
+nvram set ne_snat='{{ ne_snat }}'
+
+# Multicast
+nvram set multicast_pass='{{ multicast_pass }}'
+nvram set multicast_lan='{{ multicast_lan }}'
+nvram set multicast_lan1='{{ multicast_lan1 }}'
+nvram set multicast_lan2='{{ multicast_lan2 }}'
+nvram set multicast_lan3='{{ multicast_lan3 }}'
+nvram set multicast_quickleave='{{ multicast_quickleave }}'
+nvram set multicast_custom='{{ multicast_custom }}'
+nvram set udpxy_enable='{{ udpxy_enable }}'
+nvram set udpxy_wanface='{{ udpxy_wanface }}'
+nvram set udpxy_lan='{{ udpxy_lan }}'
+nvram set udpxy_lan1='{{ udpxy_lan1 }}'
+nvram set udpxy_lan2='{{ udpxy_lan2 }}'
+nvram set udpxy_lan3='{{ udpxy_lan3 }}'
+nvram set udpxy_stats='{{ udpxy_stats }}'
+nvram set udpxy_clients='{{ udpxy_clients }}'
+nvram set udpxy_port='{{ udpxy_port }}'
+nvram set emf_enable='{{ emf_enable }}'
+nvram set force_igmpv2='{{ force_igmpv2 }}'

@@ -1,0 +1,22 @@
+---
+
+- name: Advanced > DHCP/DNS copy 'dnsmasq.conf'
+  ansible.builtin.file:
+    path: "{{ dnsmasq_target_dir }}"
+    owner: root
+    group: root
+    mode: '775'
+    state: directory
+
+- ansible.builtin.copy:
+    src: "{{ dnsmasq_conf }}"
+    dest: "{{ dnsmasq_target_dir }}/dnsmasq.conf"
+    owner: root
+    group: root
+    mode: '664'
+
+- name: Restart 'dnsmasq' service
+  ansible.builtin.shell: |
+    service dnsmasq restart
+  args: 
+    executable: /bin/sh

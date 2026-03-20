@@ -1,0 +1,15 @@
+---
+
+# requires 'reboot' task to commit changes and reboot router
+
+- name: Advanced > VLAN
+  ansible.builtin.shell: "{{ lookup('template', '{{ vlan_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Advanced > VLAN changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh
+

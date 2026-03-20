@@ -1,0 +1,14 @@
+---
+
+# requires 'reboot' task to commit changes and reboot router
+
+- name: Configure Basic > Identification
+  ansible.builtin.shell: "{{ lookup('template', '{{ identification_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Configure Basic > Identification changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh

@@ -1,0 +1,43 @@
+---
+
+- name: Create '{{ opt_dir }}/openvpn_server_1' directory
+  ansible.builtin.file:
+    path: "{{ opt_dir }}/openvpn_server_1"
+    state: directory
+    owner: root
+    group: root
+    mode: '755'
+  when: openvpn_server_1
+
+- name: Create '{{ opt_dir }}/var/log/openvpn' directory
+  ansible.builtin.file:
+    path: "{{ opt_dir }}/var/log/openvpn"
+    state: directory
+    owner: root
+    group: root
+    mode: '755'
+  when: openvpn_server_1
+
+# uses encrypted files
+- name: VPN > OpenVPN Server > Server1 copy files with decription
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    decrypt: "{{ item.decrypt }}"
+    owner: root 
+    group: root 
+    mode: '600'
+  loop: "{{ openvpn_server_1_files if openvpn_server_1_files is iterable and openvpn_server_1_files is not string else [] }}"
+  when: openvpn_server_1
+
+- name: VPN > OpenVPN Server > Server1
+  ansible.builtin.shell: "{{ lookup('template', '{{ openvpn_server_1_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit VPN > OpenVPN Server > Server1 changes and restart 'vpnserver1' service
+  ansible.builtin.shell: |
+    nvram commit
+    service vpnserver1 restart
+  args: 
+    executable: /bin/sh

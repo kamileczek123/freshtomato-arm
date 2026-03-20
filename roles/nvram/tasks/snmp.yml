@@ -1,0 +1,14 @@
+---
+
+- name: Administration > SNMP
+  ansible.builtin.shell: "{{ lookup('template', '{{ snmp_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Administration > SNMP changes and restart 'snmp' and 'firewall' services
+  ansible.builtin.shell: |
+    nvram commit
+    service snmp restart
+    service firewall restart
+  args: 
+    executable: /bin/sh

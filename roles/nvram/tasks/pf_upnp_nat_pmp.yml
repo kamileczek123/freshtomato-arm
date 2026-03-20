@@ -1,0 +1,13 @@
+---
+
+- name: Port Forwarding > UPnP/NAT-PMP
+  ansible.builtin.script: "{{ pf_upnp_nat_pmp_nvram }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Port Forwarding > UPnP/NAT-PMP changes and restart 'upnp' service
+  ansible.builtin.shell: |
+    nvram commit
+    service upnp restart
+  args: 
+    executable: /bin/sh

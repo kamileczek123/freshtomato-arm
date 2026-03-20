@@ -1,0 +1,27 @@
+---
+
+# `backup` tasks require `usb_support` before
+
+- name: Copy USB boot scripts
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    decrypt: "{{ item.decrypt }}"
+    owner: root 
+    group: root 
+    mode: "{{ item.mode }}"
+  loop: "{% if usb_boot_scripts is defined and usb_boot_scripts is iterable and usb_boot_scripts is not string %}{{ usb_boot_scripts }}{% else %}{{ usb_boot_default_scripts }}{% endif %}"
+  when: copy_usb_boot_scripts
+
+- name: Configure USB-NAS > USB Support
+  ansible.builtin.shell: "{{ lookup('template', usb_support_nvram) }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit USB-NAS > USB Support changes and service usb restart
+  ansible.builtin.shell: |
+    /opt/etc/init.d/rc.unslung stop
+    sleep 5
+    nvram commit
+    service usb restart
+    /opt/mount.autorun

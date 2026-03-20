@@ -1,0 +1,14 @@
+---
+
+# requires 'reboot' task to commit changes and reboot router
+
+- name: Configure Advanced > Wireless
+  ansible.builtin.shell: "{{ lookup('template', '{{ wireless_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Advanced > Wireless changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh

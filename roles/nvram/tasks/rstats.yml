@@ -1,0 +1,13 @@
+---
+
+- name: Administration > Bandwidth Monitoring
+  ansible.builtin.shell: "{{ lookup('template', rstats_bandwidth_monitoring_nvram) }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Administration > Bandwidth Monitoring changes and restart 'rstats' service
+  ansible.builtin.shell: |
+    nvram commit
+    service rstats restart
+  args: 
+    executable: /bin/sh

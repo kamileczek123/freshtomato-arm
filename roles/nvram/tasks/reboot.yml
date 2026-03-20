@@ -1,0 +1,29 @@
+---
+
+# required after:
+# 'Basic > Network',
+# 'Basic > Identification',
+# 'Advanced > VLAN',
+# 'Advanced > Virtual Wireless',
+# 'Advanced > Wireless',
+# 'Advanced > DHCP/DNS',
+# 'Administration > Scripts'
+
+- name: Commit nvram changes before reboot
+  ansible.builtin.shell: nvram commit
+  args:
+    executable: /bin/sh
+
+- name: Reboot router to apply nvram changes
+  ansible.builtin.shell: sleep 2 && reboot
+  async: 1
+  poll: 0
+  ignore_errors: true
+
+- name: Wait for router to come back online (reboot takes ~2.5 min)
+  ansible.builtin.wait_for_connection:
+    delay: 150
+    timeout: 300
+
+# 'kill -HUP 1' hangs router and doesn't restart all services
+# seems that USB and NAS configuration blocks this, 'reboot' used instead

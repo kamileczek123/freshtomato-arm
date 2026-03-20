@@ -1,0 +1,28 @@
+# Wireguard Configuration > wg0 > Config
+nvram set wg0_enable='{{ wg0_enable_on_start }}'
+nvram set wg0_file='{{ wg0_file }}'
+nvram set wg0_port='{{ wg0_port }}'
+nvram set wg0_key='{{ wg0_key }}'
+nvram set wg0_pubkey='{{ wg0_pubkey }}'
+nvram set wg0_ip='{{ wg0_ip }}'
+nvram set wg0_dns='{{ wg0_dns }}'
+nvram set wg0_fwmark='{{ wg0_fwmark }}'
+nvram set wg0_mtu='{{ wg0_mtu }}'
+nvram set wg_adns='{{ wg_adns }}'   # Respond to DNS, enables dnsmasq to resolve queries arriving on this interface
+nvram set wg0_route='{{ wg0_route }}'   # ='0' Off, ='1' Auto, ='2|<integer>' Custom Table
+nvram set wg0_ka='{{ wg0_ka }}'
+nvram set wg0_endpoint='{{ wg0_endpoint }}'   # ='0' FQDN, ='1' WAN IP, ='2|<hostname>' Custom Endpoint
+nvram set wg0_aip='{{ wg0_aip }}'
+nvram set wg0_peer_dns='{{ wg0_peer_dns }}'
+nvram set wg0_lan='{{ wg0_lan }}'   # ='0' none, ='1' LAN0 (br0), ='2' LAN1 (br1), ='3' LAN0 (br0) and LAN1 (br1)
+nvram set wg0_rgw='{{ wg0_rgw }}'
+nvram set wg0_com='{{ wg0_com }}'.  # ='0' Internal Hub and Spoke, ='1' Internal Full Mesh Endpoint only, ='2' Internal Full Mesh, ='3' External VPN Provider
+
+# Wireguard Configuration > wg0 > Peers
+nvram set wg0_peers='{{ wg0_peers }}'
+
+# Wireguard Configuration > wg0 > Scripts
+nvram set wg0_preup='{{ wg0_preup }}'
+nvram set wg0_postup='{{ wg0_postup }}'
+nvram set wg0_predown='{{ wg0_predown }}'
+nvram set wg0_postdown='{{ wg0_postdown }}'

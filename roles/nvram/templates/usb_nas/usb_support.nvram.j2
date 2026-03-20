@@ -1,0 +1,23 @@
+# USB Support
+nvram set usb_enable='{{ usb_enable }}'
+nvram set usb_usb3='{{ usb_usb3 }}'
+nvram set usb_usb2='{{ usb_usb2 }}'
+nvram set usb_ohci='{{ usb_ohci }}'
+nvram set usb_uhci='{{ usb_uhci }}'
+nvram set usb_printer='{{ usb_printer }}'
+nvram set usb_printer_bidirect='{{ usb_printer_bidirect }}'
+nvram set usb_storage='{{ usb_storage }}'
+nvram set usb_fs_ext4='{{ usb_fs_ext4 }}'
+nvram set usb_fs_ntfs='{{ usb_fs_ntfs }}'
+nvram set usb_fs_fat='{{ usb_fs_fat }}'
+nvram set usb_fs_exfat='{{ usb_fs_exfat }}'
+nvram set usb_fs_hfs='{{ usb_fs_hfs }}'
+nvram set usb_ntfs_driver='{{ usb_ntfs_driver }}'
+nvram set usb_hfs_driver='{{ usb_hfs_driver }}'
+nvram set usb_automount='{{ usb_automount }}'
+nvram set script_usbmount="{% if usbmount_script is defined and usbmount_script | length > 0 %}{{ usbmount_script }}{% else %}{{ usbmount_default_script }}{% endif %}"
+nvram set script_usbumount="{% if usbumount_script is defined and usbumount_script | length > 0 %}{{ usbumount_script }}{% else %}{{ usbumount_default_script }}{% endif %}"
+nvram set idle_enable='{{ idle_enable }}'
+nvram set usb_3g='{{ usb_3g }}'
+nvram set usb_apcupsd='{{ usb_apcupsd }}'
+nvram set script_usbhotplug='{{ script_usbhotplug }}'

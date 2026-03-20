@@ -1,0 +1,59 @@
+---
+
+- hosts: routers
+  become: true
+  become_user: root
+  remote_user: root
+
+  vars:
+
+    ansible_python_interpreter: /opt/bin/python3
+
+  pre_tasks:
+
+    # uses sensitive variables
+    - name: "Include Ansible vault file"
+      include_vars: "{{ playbook_dir }}/config/vaultfile.yml"
+      tags:
+        - network
+        - virtual_wireless
+        - wireguard_wg0
+        - wireguard_wg1
+
+  tasks:
+  
+    - name: Configure Freshtomato 'nvram'
+      include_role:
+        name: nvram
+      tags:
+        - usb_support
+        - network
+        - identification
+        - time
+        - virtual_wireless
+        - wireless
+        - pf_basic
+        - pf_upnp_nat_pmp
+        - firewall
+        - vlan
+        - admin_access
+        - tomatoanon
+        - dnsmasq
+        - dhcp_dns
+        - scripts
+        - rstats
+        - cstats
+        - logging
+        - scheduler
+        - openvpn_server_1
+        - openvpn_server_2
+        - snmp
+        - wireguard_wg0
+        - wireguard_wg1
+
+    - name: Reboot Freshtomato
+      import_role:
+        name: nvram
+        tasks_from: reboot.yml
+      tags:
+        - reboot

@@ -1,0 +1,15 @@
+---
+
+- name: Configure Basic > Time
+  ansible.builtin.script: "{{ time_nvram }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Basic > Time changes and restart 'ntpd', 'dnsmasq', 'firewall' services
+  ansible.builtin.shell: |
+    nvram commit
+    service ntpd restart
+    service dnsmasq restart
+    service firewall restart
+  args: 
+    executable: /bin/sh

@@ -1,0 +1,743 @@
+---
+
+### feature toggles ###
+usb_support: false
+network: false
+identification: false
+time: false
+virtual_wireless: false
+wireless: false
+pf_basic: false
+pf_upnp_nat_pmp: false
+firewall: false
+vlan: false
+admin_access: false
+tomatoanon: false
+dnsmasq: false
+dhcp_dns: false
+scripts: false
+rstats: false
+cstats: false
+logging: false
+scheduler: false
+openvpn_server_1: false
+openvpn_server_2: false
+backup: false
+snmp: false
+wireguard_wg0: false
+wireguard_wg1: false
+reboot: false
+
+
+#####################################
+### nvram template default values ###
+#####################################
+
+
+# admin_access > Web Admin
+http_enable: '1'
+https_enable: '0'
+http_lanport: '80'
+https_lanport: '443'
+jffs2_auto_unmount: '1'
+remote_upgrade: '0'
+remote_management: '0'
+remote_mgt_https: '0'
+http_wanport: '8080'
+http_wanport_bfm: '1'
+web_wl_filter: '0'
+web_dir: 'default'
+web_css: 'default'
+web_adv_scripts: '1'
+https_crt_cn: ''
+https_crt_save: '0'
+web_mx: 'status,bwm'
+
+# admin_access > SSH Daemon
+sshd_eas: '1'
+sshd_motd: '1'
+sshd_remote: '0'
+sshd_rport: '22'
+sshd_forwarding: '1'
+sshd_port: '22'
+sshd_pass: '1'
+sshd_authkeys: ''
+
+# admin_access > Telnet Daemon
+telnetd_eas: '1'
+telnetd_port: '23'
+
+# admin_access > Admin Restrictions
+rmgt_sip: ''
+ne_shlimit: '3,3,60'
+
+# admin_access > Username / Password
+http_username: ''
+
+
+# logging > Syslog
+log_file: '1'
+log_file_size: '1024'
+log_file_keep: '0'
+log_file_custom: '0'
+log_file_path: '/var/log/messages'
+log_dropdups: '0'
+log_remote: '0'
+log_mark: '60'
+log_events: 'acre,crond,ntp,sched'
+log_min_level: '8'
+log_in: '0'
+log_out: '0'
+log_limit: '60'
+
+# logging > Web Monitor
+log_wm: '0'
+log_wmtype: '0'
+log_wmdmax: '2000'
+log_wmsmax: '2000'
+webmon_bkp: '0'
+webmon_shrink: '0'
+webmon_dir: '/tmp'
+
+
+# scheduler > Reboot
+sch_rboot: '0,0,0'
+
+# scheduler > Reconnect
+sch_rcon: '0,0,0'
+
+# scheduler > Custom 1
+sch_c1: '0,0,0'
+sch_c1_cmd: ''
+
+# scheduler > Custom 2
+sch_c2: '0,0,0'
+sch_c2_cmd: ''
+
+# scheduler > Custom 3
+sch_c3: '0,0,0'
+sch_c3_cmd: ''
+
+# scheduler > Custom 4
+sch_c4: '0,0,0'
+sch_c4_cmd: ''
+
+# scheduler > Custom 5
+sch_c5: '0,0,0'
+sch_c5_cmd: ''
+
+
+# scripts > Init
+script_init: ''
+
+# scripts > Firewall
+script_fire: ''
+
+# scripts > WANUp
+script_wanup: ''
+
+
+# tomatoanon > TomatoAnon Settings
+tomatoanon_answer: '1'
+tomatoanon_enable: '0'
+
+# tomatoanon > FreshTomato Update Notification System
+tomatoanon_notify: '1'
+
+
+# snmp > SNMP Settings
+snmp_enable: '1'
+snmp_port: '161'
+snmp_remote: '0'
+snmp_remote_sip: ''
+snmp_location: 'router'
+snmp_contact: 'admin@tomato'
+snmp_ro: 'rocommunity'
+
+
+# rstats_bandwidth_monitoring > Bandwidth Monitoring
+rstats_enable: '0'
+rstats_path: ''
+rstats_stime: '2'
+rstats_sshut: '1'
+rstats_bak: '0'
+rstats_offset: '1'
+rstats_exclude: ''
+rstats_data: ''
+
+
+# cstats_ip_traffic_monitoring > IP Traffic Monitoring
+cstats_enable: '0'
+cstats_path: ''
+cstats_stime: '2'
+cstats_sshut: '1'
+cstats_bak: '0'
+cstats_offset: '1'
+cstats_exclude: ''
+cstats_include: ''
+cstats_all: '1'
+cstats_labels: '0'
+
+
+# network > MultiWAN
+mwan_num: '1'
+mwan_cktime: '0'
+
+# network > WAN0 Settings
+wan_proto: 'dhcp'
+wan_sta: ''
+wan_islan: '1'
+wan_ipaddr: '0.0.0.0'
+wan_netmask: '255.255.255.0'
+wan_gateway: '0.0.0.0'
+wan_dns_auto: '0'
+wan_dns: ''
+wan_mtu_enable: '0'
+wan_mtu: '1500'
+wan_modem_ipaddr: '0.0.0.0'
+wan_hilink_ip: '0.0.0.0'
+wan_status_script: '0'
+wan_ckmtd: '2'
+wan_wins: ''
+
+# network > LAN
+lan_ifname: 'br0'
+lan_stp: '0'
+lan_ipaddr: '192.168.1.1'
+lan_netmask: '255.255.255.0'
+dhcp_start: ''
+dhcpd_startip: ''
+dhcpd_endip: ''
+dhcp_lease: ''
+dhcp_num: ''
+lan_proto: 'dhcp'
+lan1_ifname: ''
+lan1_stp: '0'
+lan1_ipaddr: ''
+lan1_netmask: '255.255.255.0'
+dhcp1_start: ''
+dhcpd1_startip: ''
+dhcpd1_endip: ''
+dhcp1_lease: ''
+dhcp1_num: ''
+lan1_proto: 'dhcp'
+lan_gateway: '0.0.0.0'
+lan_dhcp: '0'
+
+# network > Ethernet Ports State - Configuration
+lan_state: '1'
+lan_desc: '1'
+lan_invert: '0'
+
+# network > Wireless Band Steering
+smart_connect_x: '0'
+
+# network > Wireless (wl0) / 2.4 GHz
+wl0_radio: '1'
+wl0_mode: 'ap'
+wl0_net_mode: 'mixed'
+wl0_ssid: 'FreshTomato24'
+wl0_closed: '0'
+wl0_channel: '0'
+wl0_nbw_cap: '0'
+wl0_nctrlsb: 'lower'
+wl0_security_mode: 'disabled'
+wl0_crypto: 'aes'
+wl0_wpa_psk: ''
+wl0_wpa_gtk_rekey: '3600'
+
+# network > Wireless (wl1) / 5 GHz
+wl1_radio: '1'
+wl1_mode: 'ap'
+wl1_net_mode: 'mixed'
+wl1_ssid: 'FreshTomato50'
+wl1_closed: '0'
+wl1_channel: '0'
+wl1_nbw_cap: '0'
+wl1_nctrlsb: 'lower'
+wl1_security_mode: 'disabled'
+wl1_crypto: 'aes'
+wl1_wpa_psk: ''
+wl1_wpa_gtk_rekey: '3600'
+
+# network > Wireless (wl2) / 5 GHz
+wl2_radio: '0'
+wl2_mode: 'ap'
+wl2_net_mode: 'mixed'
+wl2_ssid: 'FreshTomato52'
+wl2_closed: '0'
+wl2_channel: '0'
+wl2_nbw_cap: '0'
+wl2_nctrlsb: 'lower'
+wl2_security_mode: 'disabled'
+wl2_crypto: 'aes'
+wl2_wpa_psk: ''
+wl2_wpa_gtk_rekey: '3600'
+
+
+# time > Time
+tm_sel: 'CET-1CEST,M3.5.0/2,M10.5.0/3'
+tm_dst: '1'
+ntp_updates: '1'
+ntp_server: '0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org'
+ntpd_enable: '0'
+ntpd_server_redir: '0'
+tm_tz: 'CET-1CEST,M3.5.0/2,M10.5.0/3'
+ntp_ready: '1'
+
+
+# identification > Router Identification
+router_name: 'FreshTomato'
+wan_hostname: 'FreshTomato'
+wan_domain: ''
+
+
+# dhcp_dns > DHCP / DNS Client (WAN)
+dnssec_enable: '0'
+dnscrypt_proxy: '0'
+stubby_proxy: '0'
+dhcpc_custom: ''
+dnsmasq_edns_size: '1280'
+dhcpc_minpkt: '1'
+
+# dhcp_dns > DHCP / DNS Server (LAN)
+dhcpd_dmdns: '0'
+dnsmasq_debug: '0'
+dns_addget: '0'
+dns_intcpt: '0'
+dhcpd_gwmode: '0'
+dhcpd_static_only: '0'
+dnsmasq_gen_names: '0'
+dnsmasq_onion_support: '0'
+dhcpd_lmax: '255'
+dhcpd_slt: '0'
+ipv6_radvd: '0'
+ipv6_dhcpd: '0'
+ipv6_fast_ra: '0'
+ipv6_lease_time: '12'
+dnsmasq_q: '0'
+dns_priv_override: '0'
+dns_norebind: '0'
+dns_fwd_local: '0'
+mdns_enable: '0'
+mdns_reflector: '1'
+dnsmasq_custom: ''
+
+# dhcp_dns > TFTP Server
+dnsmasq_tftp: '0'
+dnsmasq_tftp_path: ''
+dnsmasq_pxelan: '0'
+dnsmasq_pxelan0: '0'
+dnsmasq_pxelan1: '0'
+dnsmasq_pxelan2: '0'
+dnsmasq_pxelan3: '0'
+
+
+# firewall > Firewall
+block_wan: '1'
+block_wan_limit: '1'
+block_wan_limit_icmp: '1'
+ne_syncookies: '1'
+DSCP_fix_enable: '0'
+fw_blackhole: '1'
+
+# firewall > NAT
+nf_loopback: '0'
+ne_snat: '0'
+
+# firewall > Multicast
+multicast_pass: '0'
+multicast_lan: '0'
+multicast_lan1: '0'
+multicast_lan2: '0'
+multicast_lan3: '0'
+multicast_quickleave: '1'
+multicast_custom: ''
+udpxy_enable: '0'
+udpxy_wanface: ''
+udpxy_lan: '0'
+udpxy_lan1: '0'
+udpxy_lan2: '0'
+udpxy_lan3: '0'
+udpxy_stats: '0'
+udpxy_clients: '3'
+udpxy_port: '4022'
+emf_enable: '0'
+force_igmpv2: '0'
+
+
+# vlan > VLAN Ethernet and Wireless
+vlan0ports: ''
+vlan1ports: ''
+vlan2ports: ''
+vlan3ports: ''
+vlan4ports: ''
+vlan5ports: ''
+vlan6ports: ''
+vlan7ports: ''
+vlan8ports: ''
+vlan9ports: ''
+vlan10ports: ''
+vlan11ports: ''
+vlan12ports: ''
+vlan13ports: ''
+vlan14ports: ''
+vlan15ports: ''
+vlan0hwname: ''
+vlan1hwname: ''
+vlan2hwname: ''
+vlan3hwname: ''
+vlan4hwname: ''
+vlan5hwname: ''
+vlan6hwname: ''
+vlan7hwname: ''
+vlan8hwname: ''
+vlan9hwname: ''
+vlan10hwname: ''
+vlan11hwname: ''
+vlan12hwname: ''
+vlan13hwname: ''
+vlan14hwname: ''
+vlan15hwname: ''
+wan_ifnameX: ''
+wan2_ifnameX: ''
+wan3_ifnameX: ''
+wan4_ifnameX: ''
+manual_boot_nv: '0'
+lan_ifnames: ''
+lan1_ifnames: ''
+lan2_ifname: ''
+lan2_ifnames: ''
+lan3_ifname: ''
+lan3_ifnames: ''
+vlan0vid: ''
+vlan1vid: ''
+vlan2vid: ''
+vlan3vid: ''
+vlan4vid: ''
+vlan5vid: ''
+vlan6vid: ''
+vlan7vid: ''
+vlan8vid: ''
+vlan9vid: ''
+vlan10vid: ''
+vlan11vid: ''
+vlan12vid: ''
+vlan13vid: ''
+vlan14vid: ''
+vlan15vid: ''
+
+
+# virtual_wireless > wl0.1 2.4GHz
+wl0_vifs: ''
+wl0_1_ifname: ''
+wl0_1_radius_port: '1812'
+wl0_1_radius_ipaddr: ''
+wl0_1_radius_key: ''
+wl0_1_wep_bit: '128'
+wl0_1_wep: 'disabled'
+wl0_1_passphrase: ''
+wl0_1_crypto: 'aes'
+wl0_1_macmode: 'disabled'
+wl0_1_maclist: ''
+wl0_1_security_mode: 'disabled'
+wl0_1_auth_mode: 'none'
+wl0_1_akm: ''
+wl0_1_mode: 'ap'
+wl0_1_closed: '0'
+wl0_1_ap_isolate: '0'
+wl0_1_ssid: ''
+wl0_1_radio: '1'
+wl0_1_key: '1'
+wl0_1_key1: ''
+wl0_1_key2: ''
+wl0_1_key3: ''
+wl0_1_key4: ''
+wl0_1_wpa_psk: ''
+wl0_1_wpa_gtk_rekey: '3600'
+wl0_1_wme: 'on'
+wl0_1_bss_enabled: '1'
+wl0_1_bss_maxassoc: '32'
+wl0_1_auth: '0'
+
+# virtual_wireless > wl1.1 5GHz
+wl1_vifs: ''
+wl1_1_ifname: ''
+wl1_1_radius_port: '1812'
+wl1_1_radius_ipaddr: ''
+wl1_1_radius_key: ''
+wl1_1_wep_bit: '128'
+wl1_1_wep: 'disabled'
+wl1_1_passphrase: ''
+wl1_1_crypto: 'aes'
+wl1_1_macmode: 'disabled'
+wl1_1_maclist: ''
+wl1_1_security_mode: 'disabled'
+wl1_1_auth_mode: 'none'
+wl1_1_akm: ''
+wl1_1_mode: 'ap'
+wl1_1_closed: '0'
+wl1_1_ap_isolate: '0'
+wl1_1_ssid: ''
+wl1_1_radio: '1'
+wl1_1_key: '1'
+wl1_1_key1: ''
+wl1_1_key2: ''
+wl1_1_key3: ''
+wl1_1_key4: ''
+wl1_1_wpa_psk: ''
+wl1_1_wpa_gtk_rekey: '3600'
+wl1_1_wme: 'on'
+wl1_1_bss_enabled: '1'
+wl1_1_bss_maxassoc: '32'
+wl1_1_auth: '0'
+
+# virtual_wireless > wl2.1 5GHz
+wl2_vifs: ''
+wl2_1_ifname: ''
+wl2_1_radius_port: '1812'
+wl2_1_radius_ipaddr: ''
+wl2_1_radius_key: ''
+wl2_1_wep_bit: '128'
+wl2_1_wep: 'disabled'
+wl2_1_passphrase: ''
+wl2_1_crypto: 'aes'
+wl2_1_macmode: 'disabled'
+wl2_1_maclist: ''
+wl2_1_security_mode: 'disabled'
+wl2_1_auth_mode: 'none'
+wl2_1_akm: ''
+wl2_1_mode: 'ap'
+wl2_1_closed: '0'
+wl2_1_ap_isolate: '0'
+wl2_1_ssid: ''
+wl2_1_radio: '1'
+wl2_1_key: '1'
+wl2_1_key1: ''
+wl2_1_key2: ''
+wl2_1_key3: ''
+wl2_1_key4: ''
+wl2_1_wpa_psk: ''
+wl2_1_wpa_gtk_rekey: '3600'
+wl2_1_wme: 'on'
+wl2_1_bss_enabled: '1'
+wl2_1_bss_maxassoc: '32'
+wl2_1_auth: '0'
+
+
+# wireless > Wireless settings for (wl0) / 2.4 GHz
+wl0_afterburner: 'off'
+wlX_btc_mode: '0'
+wlX_frameburst: 'on'
+wlX_country_code: '#a'
+wlX_country_rev: '0'
+wlX_reg_mode: 'off'
+wlX_txpwr: '0'
+# wireless > R8000 2.4GHz power
+r8000_1_maxp2ga0: '120'
+r8000_1_maxp2ga1: '120'
+r8000_1_maxp2ga2: '120'
+# wireless > R7000 2.4GHz power
+r7000_pci_1_1_maxp2ga0: '120'
+r7000_pci_1_1_maxp2ga1: '120'
+r7000_pci_1_1_maxp2ga2: '120'
+
+# wireless > Wireless settings for (wl1) / 5 GHz
+wlX_afterburner: 'off'
+# wireless > R8000 5GHz-1 power
+r8000_0_maxp5ga0: '120,120,120,120'
+r8000_0_maxp5ga1: '120,120,120,120'
+r8000_0_maxp5ga2: '120,120,120,120'
+# wireless > R7000 5GHz power
+r7000_pci_2_1_maxp5ga0: '120,120,120,120'
+r7000_pci_2_1_maxp5ga1: '120,120,120,120'
+r7000_pci_2_1_maxp5ga2: '120,120,120,120'
+
+# wireless > R8000 5GHz-2 power
+r8000_2_maxp5ga0: '120,120,120,120'
+r8000_2_maxp5ga1: '120,120,120,120'
+r8000_2_maxp5ga2: '120,120,120,120'
+
+
+# pf_basic > Port Forwarding
+portforward: ''
+
+
+# upnp_nat_pmp > UPnP / NAT-PMP Settings (DISABLED)
+upnp_enable: '0'
+upnp_clean: '0'
+upnp_clean_interval: '600'
+upnp_clean_threshold: '20'
+upnp_secure: '1'
+upnp_lan: '0'
+upnp_lan1: '0'
+upnp_lan2: '0'
+upnp_lan3: '0'
+upnp_mnp: '0'
+upnp_custom: ''
+
+# upnp_nat_pmp > UPnP / NAT-PMP Settings (ENABLED)
+# upnp_enable: '3'
+# upnp_clean: '1'
+# upnp_clean_interval: '600'
+# upnp_clean_threshold: '20'
+# upnp_secure: '1'
+# upnp_lan: '1'
+# upnp_lan1: '0'
+# upnp_lan2: '0'
+# upnp_lan3: '0'
+# upnp_mnp: '0'
+# upnp_custom: ''
+
+
+# usb_support > USB Support
+usb_enable: '1'
+usb_usb3: '1'
+usb_usb2: '1'
+usb_ohci: '0'
+usb_uhci: '-1'
+usb_printer: '0'
+usb_printer_bidirect: '0'
+usb_storage: '1'
+usb_fs_ext4: '1'
+usb_fs_ntfs: '0'
+usb_fs_fat: '0'
+usb_fs_exfat: '0'
+usb_fs_hfs: '0'
+usb_ntfs_driver: 'ntfs3g'
+usb_hfs_driver: 'kernel'
+usb_automount: '1'
+idle_enable: '0'
+usb_3g: '0'
+usb_apcupsd: '0'
+script_usbhotplug: ''
+
+
+# openvpn_server_1 > OpenVPN Server Configuration > Server 1 > Basic
+vpn_server1_eas: ''
+vpn_server1_if: 'tun'
+vpn_server1_proto: 'udp'
+vpn_server1_port: '1194'
+vpn_server1_firewall: 'auto'
+vpn_server1_crypt: 'tls'
+vpn_server1_hmac: '2'
+vpn_server1_digest: 'default'
+vpn_server1_sn: '10.8.0.0'
+vpn_server1_nm: '255.255.255.0'
+
+# openvpn_server_1 > OpenVPN Server Configuration > Server 1 > Advanced
+vpn_server1_poll: '0'
+vpn_server1_plan: '1'
+vpn_server1_plan1: '0'
+vpn_server1_plan2: '0'
+vpn_server1_plan3: '0'
+vpn_server1_rgw: '0'
+vpn_server_dns: '1,'
+vpn_server1_pdns: '0'
+vpn_server1_ncp_enable: '1'
+vpn_server1_ncp_ciphers: 'AES-256-GCM:AES-256-CBC'
+vpn_server1_cipher: 'AES-256-CBC'
+vpn_server1_comp: '-1'
+vpn_server1_reneg: '-1'
+vpn_server1_ccd: '1'
+vpn_server1_c2c: '1'
+vpn_server1_ccd_excl: '0'
+vpn_server1_ccd_val: ''
+vpn_server1_userpass: '0'
+vpn_server1_custom: ''
+vpn_server1_dhcp: '1'
+
+
+# openvpn_server_2 > OpenVPN Server Configuration > Server 2 > Basic
+vpn_server2_eas: ''
+vpn_server2_if: 'tun'
+vpn_server2_proto: 'udp'
+vpn_server2_port: '1195'
+vpn_server2_firewall: 'auto'
+vpn_server2_crypt: 'tls'
+vpn_server2_hmac: '2'
+vpn_server2_digest: 'default'
+vpn_server2_sn: '10.8.1.0'
+vpn_server2_nm: '255.255.255.0'
+
+# openvpn_server_2 > OpenVPN Server Configuration > Server 2 > Advanced
+vpn_server2_poll: '0'
+vpn_server2_plan: '1'
+vpn_server2_plan1: '0'
+vpn_server2_plan2: '0'
+vpn_server2_plan3: '0'
+vpn_server2_rgw: '0'
+# vpn_server_dns is shared with server 1
+vpn_server2_pdns: '0'
+vpn_server2_ncp_enable: '1'
+vpn_server2_ncp_ciphers: 'AES-256-GCM:AES-256-CBC'
+vpn_server2_cipher: 'AES-256-CBC'
+vpn_server2_comp: '-1'
+vpn_server2_reneg: '-1'
+vpn_server2_ccd: '1'
+vpn_server2_c2c: '1'
+vpn_server2_ccd_excl: '0'
+vpn_server2_ccd_val: ''
+vpn_server2_userpass: '0'
+vpn_server2_custom: ''
+vpn_server2_dhcp: '1'
+
+
+# wireguard_wg0 > Wireguard Configuration > wg0 > Config
+wg0_enable_on_start: '0'
+wg0_file: ''
+wg0_port: ''
+wg0_key: ''
+wg0_pubkey: ''
+wg0_ip: ''
+wg0_dns: ''
+wg0_fwmark: '0'
+wg0_mtu: '1420'
+wg_adns: ''
+wg0_route: '0'
+wg0_ka: '0'
+wg0_endpoint: ''
+wg0_aip: ''
+wg0_peer_dns: ''
+wg0_lan: '0'
+wg0_rgw: '0'
+wg0_com: '0'
+
+# wireguard_wg0 > Wireguard Configuration > wg0 > Peers
+wg0_peers: ''
+
+# wireguard_wg0 > Wireguard Configuration > wg0 > Scripts
+wg0_preup: ''
+wg0_postup: ''
+wg0_predown: ''
+wg0_postdown: ''
+
+
+# wireguard_wg1 > Wireguard Configuration > wg1 > Config
+wg1_enable_on_start: '0'
+wg1_file: ''
+wg1_port: ''
+wg1_key: ''
+wg1_pubkey: ''
+wg1_ip: ''
+wg1_dns: ''
+wg1_fwmark: '0'
+wg1_mtu: '1420'
+# wg_adns is shared with wg0
+wg1_route: '0'
+wg1_ka: '0'
+wg1_endpoint: ''
+wg1_aip: ''
+wg1_peer_dns: ''
+wg1_lan: '0'
+wg1_rgw: '0'
+wg1_com: '0'
+
+# wireguard_wg1 > Wireguard Configuration > wg1 > Peers
+wg1_peers: ''
+
+# wireguard_wg1 > Wireguard Configuration > wg1 > Scripts
+wg1_preup: ''
+wg1_postup: ''
+wg1_predown: ''
+wg1_postdown: ''

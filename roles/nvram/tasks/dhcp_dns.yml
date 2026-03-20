@@ -1,0 +1,14 @@
+---
+
+# requires 'reboot' task to commit changes and reboot router
+
+- name: Advanced > DHCP/DNS
+  ansible.builtin.shell: "{{ lookup('template', '{{ dhcp_dns_nvram }}') }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Advanced > DHCP/DNS changes
+  ansible.builtin.shell: |
+    nvram commit
+  args: 
+    executable: /bin/sh

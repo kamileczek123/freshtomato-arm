@@ -1,0 +1,13 @@
+---
+
+- name: Administration > TomatoAnon
+  ansible.builtin.script: "{{ tomatoanon_nvram }}"
+  args: 
+    executable: /bin/sh
+
+- name: Commit Administration > TomatoAnon changes and restart 'tomatoanon' service
+  ansible.builtin.shell: |
+    nvram commit
+    service tomatoanon restart
+  args: 
+    executable: /bin/sh
