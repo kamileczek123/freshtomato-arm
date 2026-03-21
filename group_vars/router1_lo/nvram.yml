@@ -32,6 +32,12 @@ reboot: true
 
 
 
+### usb_nas ###
+# default boot scripts are used, see Docs
+# otherwise declare 'script_usbmount' and 'script_usbumount'
+
+
+
 ### administration ###
 remote_management: '1'
 http_wanport: '80'
@@ -142,13 +148,6 @@ wl2_wpa_psk: '{{ wl1_wifi_pass_FreshTomato52 }}'
 ### port_forwarding ###
 # see the target script for details
 portforward: '1<1<<80<80<192.168.1.2<HTTP>1<1<<443<443<192.168.1.2<HTTPS>1<1<<10001:10010<<192.168.1.2<SFTP>'
-
-
-
-### usb_nas ###
-# uses 'usbmount_default_script' variable
-# uses 'usbumount_default_script' variable
-copy_usb_boot_scripts: true   # copy usb_boot_default_scripts, see 'roles/nvram/vars/main.yml'
 
 
 
