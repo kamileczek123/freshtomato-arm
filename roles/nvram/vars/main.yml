@@ -50,6 +50,8 @@ usb_boot_default_scripts:
     dest: "/opt/mount.autostop"
     decrypt: false
     mode: '755'
+script_usbmount_present: false
+script_usbumount_present: false
 usb_support_nvram: "usb_nas/usb_support.nvram.j2"
 
 # vpn
