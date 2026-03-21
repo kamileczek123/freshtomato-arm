@@ -18,14 +18,14 @@
     owner: root 
     group: root 
     mode: "{{ item.mode }}"
-  loop: usb_boot_default_scripts
+  loop: "{{ usb_boot_default_scripts }}"
   when: not script_usbmount_present and not script_usbumount_present
 
 - name: Uninstall USB boot scripts
   ansible.builtin.file:
     path: "{{ item.dest }}"
     state: absent
-  loop: usb_boot_default_scripts
+  loop: "{{ usb_boot_default_scripts }}"
   when: script_usbmount_present or script_usbumount_present
 
 - name: Configure USB-NAS > USB Support
