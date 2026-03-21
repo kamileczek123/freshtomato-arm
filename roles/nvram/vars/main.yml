@@ -33,7 +33,6 @@ pf_basic_nvram: "port_forwarding/basic.nvram.j2"
 pf_upnp_nat_pmp_nvram: "port_forwarding/upnp_nat_pmp.nvram.j2"
 
 # usb_nas
-copy_usb_boot_scripts: true
 usb_boot_default_scripts:
   - src: "usb_nas/scripts/S00netwait"
     dest: "/opt/etc/init.d/S00netwait"

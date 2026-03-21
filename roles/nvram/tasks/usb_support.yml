@@ -1,6 +1,16 @@
 ---
 
-- name: Copy USB boot scripts
+- name: Check if 'script_usbmount' is declared
+  ansible.builtin.set_fact:
+    script_usbmount_present: true
+  when: script_usbmount is defined and script_usbmount | length > 0
+
+- name: Check if 'script_usbumount' is declared
+  ansible.builtin.set_fact:
+    script_usbumount_present: true
+  when: script_usbumount is defined and script_usbumount | length > 0
+
+- name: Install USB boot scripts
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -8,8 +18,15 @@
     owner: root 
     group: root 
     mode: "{{ item.mode }}"
-  loop: "{% if usb_boot_scripts is defined and usb_boot_scripts is iterable and usb_boot_scripts is not string %}{{ usb_boot_scripts }}{% else %}{{ usb_boot_default_scripts }}{% endif %}"
-  when: copy_usb_boot_scripts
+  loop: usb_boot_default_scripts
+  when: not script_usbmount_present and not script_usbumount_present
+
+- name: Uninstall USB boot scripts
+  ansible.builtin.file:
+    path: "{{ item.dest }}"
+    state: absent
+  loop: usb_boot_default_scripts
+  when: script_usbmount_present or script_usbumount_present
 
 - name: Configure USB-NAS > USB Support
   ansible.builtin.shell: "{{ lookup('template', usb_support_nvram) }}"
