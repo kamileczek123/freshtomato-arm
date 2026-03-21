@@ -6,16 +6,21 @@ freedns42_pass: password
 
 ##### freshtomato nvram
 
-wifi_pass_wl1: password
-wifi_pass_wl2: password
+### wifi passwords
+
+wl0_wifi_pass_FreshTomato24: password
+wl1_wifi_pass_FreshTomato51: password
+wl2_wifi_pass_FreshTomato52: password
 
 ### wireguard wg0 and wg1
 
 wg0_priv_key: 1234567890
 wg0_pub_key: 1234567890
-wg0_presh_key_wg0: 1234567890
+wg0_presh_key: 1234567890
+wg0_priv_key_fqdnremote: 1234567890
+wg0_presh_key_fqdnremote: 1234567890
 
 wg1_priv_key: 1234567890
 wg1_pub_key: 1234567890
-wg1_presh_key_wg0: 1234567890
+wg1_presh_key: 1234567890
 

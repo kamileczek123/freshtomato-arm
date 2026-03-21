@@ -2,3 +2,4 @@ pip_search
 pypisearch
 pexpect
 passlib
+ansible

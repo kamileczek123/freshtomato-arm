@@ -1,0 +1,248 @@
+---
+
+##################
+### nvram role ###
+##################
+
+usb_support: true
+network: true
+identification: true
+time: true
+virtual_wireless: false
+wireless: true
+pf_basic: true
+pf_upnp_nat_pmp: false
+firewall: true
+vlan: false
+admin_access: true
+tomatoanon: true
+dnsmasq: true
+dhcp_dns: true
+scripts: true
+rstats: false
+cstats: false
+logging: false
+scheduler: false
+openvpn_server_1: true
+openvpn_server_2: false
+snmp: false
+wireguard_wg0: true
+wireguard_wg1: false
+reboot: true
+
+
+
+### administration ###
+remote_management: '1'
+http_wanport: '80'
+web_css: 'at-dark'
+sshd_remote: '1'
+sshd_rport: '22'
+sshd_authkeys: |
+  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExampleKey1 user1@laptop
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQExampleKey2 user2@desktop
+
+log_file_keep: '5'
+log_file_custom: '0'
+log_file_path: '/var/log/messages'
+log_events: 'acre,crond,ntp,sched'
+
+script_init: |
+  /usr/bin/logger -s "INIT: set PATH"
+  export PATH=/opt/bin:/opt/sbin:/opt/usr/bin:/opt/usr/sbin:/bin:/sbin:/usr/bin:/usr/sbin
+script_fire: |
+  /usr/bin/logger -s "FIRE: set redirect Google DNS"
+  iptables -t nat -A PREROUTING -d 8.8.8.8 -j DNAT --to-destination 192.168.1.1   # redirect Google DNS
+  iptables -t nat -A PREROUTING -d 8.8.4.4 -j DNAT --to-destination 192.168.1.1   # redirect Google DNS
+
+script_wanup:
+
+
+
+### advanced ###
+dnsmasq_conf: "{{ host_nvram_dir }}/dnsmasq/dnsmasq.conf.j2"
+dnsmasq_target_dir: "{{ opt_dir }}/etc/dnsmasq"
+dhcpd_dmdns: '0'
+dns_addget: '0'
+dhcpd_gwmode: '0'
+dnsmasq_custom: |
+  conf-file={{ dnsmasq_target_dir }}/dnsmasq.conf
+
+# Country codes: <https://wiki.freshtomato.org/doku.php/advanced-wireless>
+wl0_afterburner: 'on'   # for b/g ifaces only
+wl0_btc_mode: '0'
+wl0_frameburst: 'on'
+wl0_country_code: '#a'
+wl0_country_rev: '0'
+wl0_txpwr: '708'
+
+wl1_afterburner: 'off'  # for n/ac ifaces
+wl1_btc_mode: '0'
+wl1_frameburst: 'on'
+wl1_country_code: '#a'
+wl1_country_rev: '0'
+wl1_txpwr: '708'
+
+wl2_afterburner: 'off'  # for n/ac ifaces
+wl2_btc_mode: '0'
+wl2_frameburst: 'on'
+wl2_country_code: '#a'
+wl2_country_rev: '0'
+wl2_txpwr: '708'
+
+### basic ###
+router_name: 'router1.lo (R8000)'
+wan_hostname: 'router1'
+wan_domain: 'lo'
+
+wan_proto: 'dhcp'
+wan_dns: '95.107.129.11 95.107.129.12'
+wan_wins: '192.168.1.1'
+lan_ifname: 'br0'
+lan_ipaddr: '192.168.1.1'
+lan_netmask: '255.255.255.0'
+lan_proto: 'static'
+lan_gateway: '0.0.0.0'
+wl0_radio: '1'
+wl0_mode: 'ap'
+wl0_net_mode: 'mixed'
+wl0_ssid: 'FreshTomato24'
+wl0_closed: '0'
+wl0_channel: '1'
+wl0_nbw_cap: '0'
+wl0_nctrlsb: 'upper'
+wl0_security_mode: 'wpa2_personal'
+wl0_crypto: 'aes'
+wl0_wpa_psk: '{{ wl0_wifi_pass_FreshTomato24 }}'
+wl1_radio: '1'
+wl1_mode: 'ap'
+wl1_net_mode: 'mixed'
+wl1_ssid: 'FreshTomato51'
+wl1_closed: '0'
+wl1_channel: '112'
+wl1_nbw_cap: '0'
+wl1_nctrlsb: 'lower'
+wl1_security_mode: 'wpa2_personal'
+wl1_crypto: 'aes'
+wl1_wpa_psk: '{{ wl1_wifi_pass_FreshTomato51 }}'
+wl2_radio: '1'
+wl2_mode: 'ap'
+wl2_net_mode: 'mixed'
+wl2_ssid: 'FreshTomato52'
+wl2_closed: '1'
+wl2_channel: '36'
+wl2_nbw_cap: '1'
+wl2_nctrlsb: 'lower'
+wl2_security_mode: 'wpa2_personal'
+wl2_crypto: 'aes'
+wl2_wpa_psk: '{{ wl1_wifi_pass_FreshTomato52 }}'
+
+
+
+### port_forwarding ###
+# see the target script for details
+portforward: '1<1<<80<80<192.168.1.2<HTTP>1<1<<443<443<192.168.1.2<HTTPS>1<1<<10001:10010<<192.168.1.2<SFTP>'
+
+
+
+### usb_nas ###
+# uses 'usbmount_default_script' variable
+# uses 'usbumount_default_script' variable
+copy_usb_boot_scripts: true   # copy usb_boot_default_scripts, see 'roles/nvram/vars/main.yml'
+
+
+
+### vpn ###
+vpn_server1_eas: ''  # to enable set ='1,', otherwise =''
+vpn_server1_port: '11948'
+vpn_server1_sn: '10.7.0.0'
+vpn_server1_nm: '255.255.255.0'
+vpn_server1_custom: |
+  ca /opt/openvpn_server_1/vpn1.fqdn-chain.pem
+  cert /opt/openvpn_server_1/vpn1.fqdn.pem
+  key /opt/openvpn_server_1/vpn1.fqdn.key
+  dh /opt/openvpn_server_1/dh.pem
+  tls-auth /opt/openvpn_server_1/ta.key 0
+  tls-version-min 1.2
+  tls-server
+  topology subnet
+  server 10.7.0.0 255.255.255.0
+  push "route 10.7.0.1 255.255.255.255" 
+  push "route 10.7.0.0 255.255.255.0"
+  push "route 192.168.1.0 255.255.255.0"
+  push "dhcp-option DNS 192.168.1.254"
+  push "dhcp-option DOMAIN lo"
+  client-to-client
+  duplicate-cn
+  keepalive 10 120
+  cipher AES-256-CBC
+  data-ciphers AES-256-GCM:AES-256-CBC
+  auth SHA256
+  max-clients 10
+  persist-key
+  persist-tun
+  status /opt/var/log/openvpn/openvpn1-status.log
+  log-append /opt/var/log/openvpn/openvpn1.log
+  verb 3
+  explicit-exit-notify 1
+  script-security 1
+
+openvpn_server_1_files:
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/template@vpn1.fqdn.ovpn"
+    dest: "/opt/openvpn_server_1/template@vpn1.fqdn.ovpn"
+    decrypt: false
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/openvpn1.log"
+    dest: "/opt/var/log/openvpn/openvpn1.log"
+    decrypt: false
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/openvpn1.log"
+    dest: "/opt/var/log/openvpn/openvpn1-status.log"
+    decrypt: false
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/vpn1.fqdn-chain.pem"
+    dest: "/opt/openvpn_server_1/vpn1.fqdn-chain.pem"
+    decrypt: true
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/vpn1.fqdn.pem"
+    dest: "/opt/openvpn_server_1/vpn1.fqdn.pem"
+    decrypt: true
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/vpn1.fqdn.key"
+    dest: "/opt/openvpn_server_1/vpn1.fqdn.key"
+    decrypt: true
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/ta.key"
+    dest: "/opt/openvpn_server_1/ta.key"
+    decrypt: true
+  - src: "{{ host_nvram_dir }}/openvpn_server_1/dh.pem"
+    dest: "/opt/openvpn_server_1/dh.pem"
+    decrypt: true
+
+
+
+### wireguard ###
+# wg0 Config
+wg0_enable_on_start: 1
+wg0_port: 62999
+wg0_key: "{{ wg0_priv_key }}"
+wg0_pubkey: "{{ wg0_pub_key }}"
+wg0_ip: "10.9.1.1/32"
+wg0_dns: ""
+wg0_fwmark: 0
+wg0_mtu: 1360
+wg_adns: ""   # when enabled ="0,"
+wg0_route: 1
+wg0_ka: 0
+wg0_endpoint: "2|vpn1.du.pyknix.com"
+wg0_aip: "10.9.1.1/32,192.168.10.0/24"
+wg0_peer_dns: ""
+wg0_lan: 1
+wg0_rgw: 0
+wg0_com: 0
+
+# wg0 Peers
+wg0_peers: '1<vpn1.fqdnremote<vpn1.fqdnremote<{{ wg0_priv_key_fqdnremote }}<{{ wg0_presh_key_fqdnremote }}<10.9.90.254/32<10.9.90.254/32,192.168.90.0/24<25>'
+
+# wg0 Scripts
+wg0_preup: ''
+wg0_postup: |
+  ip route add 192.168.20.0/24 via 10.9.20.1 dev wg0
+wg0_predown: |
+  ip route del 192.168.20.0/24 via 10.9.20.1 dev wg0
+wg0_postdown: |
+  ip route del 192.168.20.0/24 via 10.9.20.1 dev wg0

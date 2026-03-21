@@ -22,7 +22,6 @@ logging: false
 scheduler: false
 openvpn_server_1: false
 openvpn_server_2: false
-backup: false
 snmp: false
 wireguard_wg0: false
 wireguard_wg1: false
@@ -527,12 +526,12 @@ wl2_1_auth: '0'
 
 # wireless > Wireless settings for (wl0) / 2.4 GHz
 wl0_afterburner: 'off'
-wlX_btc_mode: '0'
-wlX_frameburst: 'on'
-wlX_country_code: '#a'
-wlX_country_rev: '0'
-wlX_reg_mode: 'off'
-wlX_txpwr: '0'
+wl0_btc_mode: '0'
+wl0_frameburst: 'on'
+wl0_country_code: '#a'
+wl0_country_rev: '0'
+wl0_reg_mode: 'off'
+wl0_txpwr: '0'
 # wireless > R8000 2.4GHz power
 r8000_1_maxp2ga0: '120'
 r8000_1_maxp2ga1: '120'
@@ -543,7 +542,13 @@ r7000_pci_1_1_maxp2ga1: '120'
 r7000_pci_1_1_maxp2ga2: '120'
 
 # wireless > Wireless settings for (wl1) / 5 GHz
-wlX_afterburner: 'off'
+wl1_afterburner: 'off'
+wl1_btc_mode: '0'
+wl1_frameburst: 'on'
+wl1_country_code: '#a'
+wl1_country_rev: '0'
+wl1_reg_mode: 'off'
+wl1_txpwr: '0'
 # wireless > R8000 5GHz-1 power
 r8000_0_maxp5ga0: '120,120,120,120'
 r8000_0_maxp5ga1: '120,120,120,120'
@@ -553,6 +558,14 @@ r7000_pci_2_1_maxp5ga0: '120,120,120,120'
 r7000_pci_2_1_maxp5ga1: '120,120,120,120'
 r7000_pci_2_1_maxp5ga2: '120,120,120,120'
 
+# wireless > Wireless settings for (wl2) / 5 GHz
+wl2_afterburner: 'off'
+wl2_btc_mode: '0'
+wl2_frameburst: 'on'
+wl2_country_code: '#a'
+wl2_country_rev: '0'
+wl2_reg_mode: 'off'
+wl2_txpwr: '0'
 # wireless > R8000 5GHz-2 power
 r8000_2_maxp5ga0: '120,120,120,120'
 r8000_2_maxp5ga1: '120,120,120,120'
@@ -607,6 +620,8 @@ usb_fs_hfs: '0'
 usb_ntfs_driver: 'ntfs3g'
 usb_hfs_driver: 'kernel'
 usb_automount: '1'
+script_usbmount: ''
+script_usbumount: ''
 idle_enable: '0'
 usb_3g: '0'
 usb_apcupsd: '0'

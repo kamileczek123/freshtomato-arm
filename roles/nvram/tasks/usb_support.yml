@@ -1,7 +1,5 @@
 ---
 
-# `backup` tasks require `usb_support` before
-
 - name: Copy USB boot scripts
   ansible.builtin.template:
     src: "{{ item.src }}"

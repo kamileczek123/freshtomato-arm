@@ -33,7 +33,6 @@ pf_basic_nvram: "port_forwarding/basic.nvram.j2"
 pf_upnp_nat_pmp_nvram: "port_forwarding/upnp_nat_pmp.nvram.j2"
 
 # usb_nas
-usb_support_nvram: "usb_nas/usb_support.nvram.j2"
 copy_usb_boot_scripts: true
 usb_boot_default_scripts:
   - src: "usb_nas/scripts/S00netwait"
@@ -52,6 +51,7 @@ usb_boot_default_scripts:
     dest: "/opt/mount.autostop"
     decrypt: false
     mode: '755'
+usb_support_nvram: "usb_nas/usb_support.nvram.j2"
 
 # vpn
 openvpn_server_1_nvram: "vpn/openvpn_server_1.nvram.j2"
