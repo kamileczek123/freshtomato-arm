@@ -39,4 +39,7 @@
     sleep 5
     nvram commit
     service usb restart
-    /opt/mount.autorun
+
+- name: Run /opt/mount.autorun if USB boot scripts were installed
+  ansible.builtin.shell: /opt/mount.autorun
+  when: not script_usbmount_present and not script_usbumount_present
