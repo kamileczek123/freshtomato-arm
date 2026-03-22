@@ -4,11 +4,10 @@ Guide for configuring access to target for Ansible playbook.
 
 ## Prerequisites
 
-| Component   | Minimum Version | Notes                                                |
-|-------------|-----------------|------------------------------------------------------|
-| SSH client  | any             | OpenSSH bundled with macOS / Linux, PuTTY on Windows |
-| SSH keypair | rsa             | keypair generated in ssh-keygen (macOS / Linux) or   |
-|             |                 | PuTTYgen on Windows
+| Component   | Minimum Version | Notes                                                                  |
+|-------------|-----------------|------------------------------------------------------------------------|
+| SSH client  | any             | OpenSSH bundled with macOS / Linux, PuTTY on Windows                   |
+| SSH keypair | rsa             | keypair generated in ssh-keygen (macOS / Linux) or PuTTYgen on Windows |
 
 ## SSH Access
 

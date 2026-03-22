@@ -12,11 +12,16 @@ Guide for configuring a local workstation to run the Ansible `nvram` role agains
 
 ## Setup Python Virtual Environment
 
-1. Clone this `frestomato-arm` repository
+1. Clone this `frestomato-arm` repository with release tage `2025.5.1`, adjust the tag to specific release you need
+
+```bash
+git clone --branch 2025.5.1 https://github.com/kamileczek123/freshtomato-arm.git
+```
+
 2. Create and activate a dedicated virtual environment for the project
 
 ```bash
-cd ~/freshtomato-arm
+cd freshtomato-arm
 
 python3 -m venv .venv
 source .venv/bin/activate

@@ -21,7 +21,7 @@ Full setup and usage documentation is available in [docs/](docs/index.md):
 3. [Local Environment Setup](docs/local_environment_setup.md)
 4. [Target FreshTomato Router Access Setup](docs/target_freshtomato_router_access_setup.md)
 5. [Configure and Run Playbook](docs/configure_and_run_playbook.md)
-6. [Appendix - Ansible nvram role README.md](../roles/nvram/README.md).
+6. [Appendix - Ansible nvram role README.md](roles/nvram/README.md).
 
 ## Prerequisites
 
@@ -32,8 +32,6 @@ The following must be completed before running the playbook:
 3. Ansible and dependencies installed on the local workstation
 4. SSH key-based access to the target router configured
 5. Ansible inventory and host variables configured
-
-See [docs/index.md](docs/index.md) for the full step-by-step guide.
 
 ## Role Structure
 
@@ -164,7 +162,7 @@ The versioning will follow the FreshTomato Firmware versioning, i.e. for firmwar
 The playbook so far was tested with following router hardware:
 
 |  Brand  |   Model   |
-| ------- | --------- |
+|---------|-----------|
 | Netgear | R7000     |
 | Netgear | R8000     |
 | Asus    | RT-AC68U  |

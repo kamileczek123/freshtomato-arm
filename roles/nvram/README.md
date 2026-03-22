@@ -15,13 +15,13 @@ Version compatibility:
 
 ## Prerequisites
 
-Full setup and usage documentation is available in [docs/](../../docs/index.md):
+Full setup and usage documentation is available in [docs/](docs/index.md):
 
-1. Configured `SWAP` partition and `/opt` mount -> see [Enable USB Storage for the FreshTomato Router](../../docs/enable_usb_storage_for_the_freshtomato_router.md) documentation
-2. Installed Entware, `openssh-sftp-server` and `python3` packages -> see [Enable USB Storage for the FreshTomato Router](../../docs/install_entware_and_packages_on_the_freshtomato_router.md)
-3. Installed Ansible and dependiencies on local environment -> see [Local Environment Setup](../../docs/local_environment_setup.md))
-4. Configured accees to target router -> see [Target FreshTomato Router Access Setup](../../docs/target_freshtomato_router_access_setup.md)
-5. Playbook configured -> see [Configure and Run Playbook](../../docs/configure_and_run_playbook.md)
+1. Configured `SWAP` partition and `/opt` mount -> see [Enable USB Storage for the FreshTomato Router](docs/enable_usb_storage_for_the_freshtomato_router.md) documentation
+2. Installed Entware, `openssh-sftp-server` and `python3` packages -> see [Enable USB Storage for the FreshTomato Router](docs/install_entware_and_packages_on_the_freshtomato_router.md)
+3. Installed Ansible and dependiencies on local environment -> see [Local Environment Setup](docs/local_environment_setup.md))
+4. Configured accees to target router -> see [Target FreshTomato Router Access Setup](docs/target_freshtomato_router_access_setup.md)
+5. Playbook configured -> see [Configure and Run Playbook](docs/configure_and_run_playbook.md)
 
 ## Role structure
 
