@@ -20,7 +20,7 @@ The setup follows these sequential steps:
 
 5. **Configure and run the playbook** — Define per-host variables, enable feature toggles, and run the `nvram` playbook to apply the desired router configuration. See [Configure and Run Playbook](configure_and_run_playbook.md).
 
-6. **Appendix** - Ansible `nvram` role implementation documentation. See [Ansible nvram role README.md](roles/nvram/README.md).
+6. **Appendix** - Ansible `nvram` role implementation documentation. See [Ansible nvram role README.md](../roles/nvram/README.md).
 
 ## Conclusion
 
