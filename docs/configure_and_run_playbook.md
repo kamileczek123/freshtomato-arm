@@ -102,10 +102,10 @@ ansible-playbook ./main.yml -i ./router1.lo.ini --tags "usb_support"
 
 Runing playbook for USB Support will enable complete and optimized USB Support configuration - high USB performance and pendrive liveness. The default role configuration for USB Support will install following scripts:
 
-- [`S00netwait`](https://gitea.kuliberda.pl/kamil/machines/src/branch/master/freshtomato/files/_shared/nvram/usb_nas/scripts/S00netwait) script to synchronize run Entware daemons after network is configured,
-- [`S01tuning`](https://gitea.kuliberda.pl/kamil/machines/src/branch/master/freshtomato/files/_shared/nvram/usb_nas/scripts/S01tuning) script which adjusts proc ipv4/ipv6 related,
-- [`mount.autorun`](https://gitea.kuliberda.pl/kamil/machines/src/branch/master/freshtomato/files/_shared/nvram/usb_nas/scripts/mount.autorun) script during each boot installs `/etc/fstab` entries and triggers daemon scripts located in `/opt/etc/init.d` folder,
-- [`mount.autostop`](https://gitea.kuliberda.pl/kamil/machines/src/branch/master/freshtomato/files/_shared/nvram/usb_nas/scripts/mount.autorun) script stops daemon scripts located in `/opt/etc/init.d` folder during each shutdown.
+- [`S00netwait`](https://github.com/kamileczek123/freshtomato-arm/blob/main/roles/nvram/templates/usb_nas/scripts/S00netwait) script to synchronize run Entware daemons after network is configured,
+- [`S01tuning`](https://github.com/kamileczek123/freshtomato-arm/blob/main/roles/nvram/templates/usb_nas/scripts/S01tuning) script which adjusts proc ipv4/ipv6 related,
+- [`mount.autorun`](https://github.com/kamileczek123/freshtomato-arm/blob/main/roles/nvram/templates/usb_nas/scripts/mount.autorun) script during each boot installs `/etc/fstab` entries and triggers daemon scripts located in `/opt/etc/init.d` folder,
+- [`mount.autostop`](https://github.com/kamileczek123/freshtomato-arm/blob/main/roles/nvram/templates/usb_nas/scripts/mount.autostop) script stops daemon scripts located in `/opt/etc/init.d` folder during each shutdown.
 
 Run playbook with `reboot` to achive hardened USB Support configuration:
 
