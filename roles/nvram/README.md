@@ -11,7 +11,7 @@ References:
 
 Version compatibility:
 
-- `freshtomato-arm 2025.5`
+- `freshtomato-arm 2026.1`
 
 ## Prerequisites
 

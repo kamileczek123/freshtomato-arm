@@ -1,10 +1,11 @@
 # Enable USB Storage for the FreshTomato Router
 
-If USB 2.0 and USB 3.0 ports used at the same time, OS attaches USB 3.0 device as `sda` and USB 2.0 device as `sdb`. Then the `sdb` device is used as **primary storage**, while `sda` can be used as **backup storage** to simplify disaster recovery in case the primary USB device will die. 
+If USB 2.0 and USB 3.0 ports used at the same time, OS assigns USB 3.0 port to `usb1` device (`xhci_hcd` driver is used) the attached storage likely is available as as `/dev/sda` and USB 2.0 port to `usb2` device (`ehci_hcd` driver is used) the attached storage likely is available as as `/dev/sdb`. Then the `sda` device is used as **primary storage**, while `sdb` can be used as **backup storage** to simplify disaster recovery in case the primary USB device will die.
 
 It is recommended to use USB 3.0 drive attached to USB 3.0 port on the router to assure higher read/writes than are available on USB 2.0 port and drive. When a slow drive or port is used, this is clearly felt when running the Entware applications.
 
 This documentation covers use of `ext2` filesystem on USB storage from two reasons;
+
 1. to extend available router memory by SWAP partition - it is required to run `python3` which is required by Ansible,
 2. to keep consistency with FreshTomato OS BusyBox running.
 

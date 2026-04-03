@@ -8,9 +8,10 @@ References:
 
 - [FreshTomato ARM source code repository](https://github.com/FreshTomato-Project/freshtomato-arm)
 
-Version compatibility:
+Version compatibility, see appropriate releases:
 
 - `freshtomato-arm 2025.5`
+- `freshtomato-arm 2026.1`
 
 ## Documentation
 

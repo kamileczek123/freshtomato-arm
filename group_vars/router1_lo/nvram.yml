@@ -152,11 +152,11 @@ portforward: '1<1<<80<80<192.168.1.2<HTTP>1<1<<443<443<192.168.1.2<HTTPS>1<1<<10
 
 
 ### vpn ###
-vpn_server1_eas: ''  # to enable set ='1,', otherwise =''
-vpn_server1_port: '11948'
-vpn_server1_sn: '10.7.0.0'
-vpn_server1_nm: '255.255.255.0'
-vpn_server1_custom: |
+vpns1_eas: ''  # to enable set ='1,', otherwise =''
+vpns1_port: '11948'
+vpns1_sn: '10.7.0.0'
+vpns1_nm: '255.255.255.0'
+vpns1_custom: |
   ca /opt/openvpn_server_1/vpn1.fqdn-chain.pem
   cert /opt/openvpn_server_1/vpn1.fqdn.pem
   key /opt/openvpn_server_1/vpn1.fqdn.key
@@ -227,7 +227,7 @@ wg0_mtu: 1360
 wg_adns: ""   # when enabled ="0,"
 wg0_route: 1
 wg0_ka: 0
-wg0_endpoint: "2|vpn1.du.pyknix.com"
+wg0_endpoint: "2|vpn1.fqdn"
 wg0_aip: "10.9.1.1/32,192.168.10.0/24"
 wg0_peer_dns: ""
 wg0_lan: 1

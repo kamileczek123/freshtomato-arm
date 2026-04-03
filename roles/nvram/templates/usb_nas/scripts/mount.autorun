@@ -5,10 +5,10 @@
 # use '/sbin/blkid' to see available drives, partitions and labels
 
 /usr/bin/logger -s "mount.autorun: set mounts in /etc/fstab"
-# /dev/sdX2
+# /dev/sda2 likely attached to usb1 (USB 3.0 port) 
 echo 'LABEL=_OPT /opt ext2 rw,noatime 0 2' >>/etc/fstab
 
-# /dev/sdX1
+# /dev/sda1 likely attached to usb1 (USB 3.0 port)
 echo 'LABEL=_SWAP" none swap sw 0 0' >>/etc/fstab
 
 /usr/bin/logger -s "mount.autorun: mounting /etc/fstab"
